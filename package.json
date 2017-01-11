@@ -1,0 +1,25 @@
+{
+  "name": "blogging-app-mongoose",
+  "version": "1.0.0",
+  "description": "blogging app integrating mongoose",
+  "main": "server.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/steve2482/blogging-app-mongoose.git"
+  },
+  "author": "Steve Brown",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/steve2482/blogging-app-mongoose/issues"
+  },
+  "homepage": "https://github.com/steve2482/blogging-app-mongoose#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "mongoose": "^4.7.6",
+    "morgan": "^1.7.0"
+  }
+}
