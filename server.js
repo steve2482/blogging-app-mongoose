@@ -27,3 +27,39 @@ app.get('/posts', (req, res) => {
       res.status(500).json({message: 'Internal server error'});
     });
 });
+
+app.get('/posts:id', (req, res) => {
+  BlogPosts
+  .findById(req.params.id)
+  .exec()
+  .then(post => res.json(post.apiRepresentation()))
+  .catch(
+    err => {
+      console.error(err);
+      res.status(500).json({message: 'Internal server error'});
+    });
+});
+
+app.post('/posts', (req, res) => {
+  const requiredFields = ['title', 'content', 'author'];
+  requiredFields.forEach(field => {
+    if (!(field in req.body && req.body[field])) {
+      return res.status(400).json({message: `Must specify a value for ${field}`});
+    }
+  });
+  BlogPosts
+  .create({
+    title: req.body.title,
+    content: req.body.title,
+    author: {
+      firstName: req.body.author.firstName,
+      lastName: req.body.author.lastName
+    }
+  })
+  .then(post => res.json(post.apiRepresentation()))
+  .catch(
+    err => {
+      console.error(err);
+      res.status(500).json({message: 'Internal server error'});
+    });
+});
