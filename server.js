@@ -90,3 +90,21 @@ app.put('/posts/:id', (req, res) => {
       res.status(500).json({message: 'Internal server error'});
     });
 });
+
+app.delete('/posts/:id', (req, res) => {
+  if (!(req.params.id)) {
+    const message = ('DELETE request requires an id parameter');
+    console.error(message);
+    res.status(400).json({message: message});
+  }
+
+  BlogPosts
+  .remove({_id: req.params.id})
+  .exec()
+  .then(() => res.status(204))
+  .catch(
+    err => {
+      console.error(err);
+      res.status(500).json({message: 'Internal server error'});
+    });
+});
