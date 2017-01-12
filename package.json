@@ -4,6 +4,7 @@
   "description": "blogging app integrating mongoose",
   "main": "server.js",
   "scripts": {
+    "start": "node server.js",
     "test": "mocha"
   },
   "repository": {
