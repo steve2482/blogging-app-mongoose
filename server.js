@@ -19,10 +19,7 @@ app.get('/posts', (req, res) => {
   .limit(10)
   .exec()
   .then(posts => {
-    res.json({
-      posts: posts.map(
-        post => post.apiRepresentation())
-    });
+    res.json(posts.map(post => post.apiRepresentation()));
   })
   .catch(
     err => {
