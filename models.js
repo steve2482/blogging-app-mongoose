@@ -24,6 +24,6 @@ blogPostSchema.methods.apiRepresentation = function() {
   };
 };
 
-const BlogPosts = mongoose.model('BlogPosts', blogPostSchema);
+const Post = mongoose.model('Post', blogPostSchema);
 
-module.exports = {BlogPosts};
+module.exports = {Post};

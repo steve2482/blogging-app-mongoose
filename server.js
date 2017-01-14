@@ -6,7 +6,7 @@ const morgan = require('morgan');
 mongoose.Promise = global.Promise;
 
 const {PORT, DATABASE_URL} = require('./config');
-const {BlogPosts} = require('./models');
+const {Post} = require('./models');
 
 const app = express();
 
@@ -14,7 +14,7 @@ app.use(morgan('common'));
 app.use(bodyParser.json());
 
 app.get('/posts', (req, res) => {
-  BlogPosts
+  Post
   .find()
   .limit(10)
   .exec()
@@ -29,7 +29,7 @@ app.get('/posts', (req, res) => {
 });
 
 app.get('/posts/:id', (req, res) => {
-  BlogPosts
+  Post
   .findById(req.params.id)
   .exec()
   .then(post => res.json(post.apiRepresentation()))
@@ -47,7 +47,7 @@ app.post('/posts', (req, res) => {
       return res.status(400).json({message: `Must specify a value for ${field}`});
     }
   });
-  BlogPosts
+  Post
   .create({
     title: req.body.title,
     content: req.body.title,
@@ -80,7 +80,7 @@ app.put('/posts/:id', (req, res) => {
     }
   });
 
-  BlogPosts
+  Post
   .findByIdAndUpdate(req.params.id, {$set: toUpdate})
   .exec()
   .then(post => res.status(201).json(post))
@@ -98,7 +98,7 @@ app.delete('/posts/:id', (req, res) => {
     res.status(400).json({message: message});
   }
 
-  BlogPosts
+  Post
   .remove({_id: req.params.id})
   .exec()
   .then(() => res.status(204))
